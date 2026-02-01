@@ -56,6 +56,12 @@ namespace FileLister
             }
         }
 
+        private void OpenComparison_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new ComparisonWindow();
+            window.Show();
+        }
+
         private async void ScanButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedDrives = Drives.Where(d => d.IsSelected).ToList();

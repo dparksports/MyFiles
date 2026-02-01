@@ -23,10 +23,15 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
-            <Button x:Name="ScanButton" Content="Scan Selected Drives" Padding="10,5" Click="ScanButton_Click" Margin="0,0,10,0"/>
-            <Button x:Name="ChecksumButton" Content="Calculate SHA256" Padding="10,5" Click="ChecksumButton_Click" Margin="0,0,10,0" IsEnabled="False"/>
-            <Button x:Name="SaveButton" Content="Save Scan List" Padding="10,5" Click="SaveButton_Click" IsEnabled="False"/>
+        <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
+                 <Button Content="Compare Comparison Tool" Click="OpenComparison_Click" Padding="10,5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ScanButton" Content="Scan Selected Drives" Padding="10,5" Click="ScanButton_Click" Margin="0,0,10,0"/>
+                <Button x:Name="ChecksumButton" Content="Calculate SHA256" Padding="10,5" Click="ChecksumButton_Click" Margin="0,0,10,0" IsEnabled="False"/>
+                <Button x:Name="SaveButton" Content="Save Scan List" Padding="10,5" Click="SaveButton_Click" IsEnabled="False"/>
+            </StackPanel>
         </StackPanel>
 
         <StackPanel Grid.Row="3">
