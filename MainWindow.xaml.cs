@@ -144,6 +144,16 @@ namespace FileLister
                     File.WriteAllText(STATE_FILE, filename);
                     
                     StatusText.Text += " List Saved.";
+                    
+                    // Auto-Save Integrity Sidecar
+                    try
+                    {
+                        ChecksumHelper.SaveChecksumFile(filename);
+                    }
+                    catch (Exception ex)
+                    {
+                         MessageBox.Show($"Error creating sidecar: {ex.Message}");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -393,6 +403,16 @@ namespace FileLister
                 ChecksumControlButton.Content = "Calculation Complete";
                 ChecksumControlButton.IsEnabled = false;
                 if (File.Exists(STATE_FILE)) File.Delete(STATE_FILE);
+
+                // Auto-Save Integrity Sidecar for the Checksum Manifest
+                try
+                {
+                    ChecksumHelper.SaveChecksumFile(_currentChecksumOutputPath);
+                }
+                catch (Exception ex)
+                {
+                     MessageBox.Show($"Error creating checksum manifest sidecar: {ex.Message}");
+                }
             }
         }
 

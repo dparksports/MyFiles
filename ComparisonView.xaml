@@ -52,6 +52,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                        <Button Content="Refresh" Margin="0,0,10,0" Padding="10,5" Click="RefreshHistory_Click"/>
                         <Button Content="Browse &amp; Add..." Margin="0,0,10,0" Padding="10,5" Click="BrowseSimple_Click"/>
                         <Button Content="Compare Selected" Padding="10,5" Click="CompareSimple_Click"/>
                     </StackPanel>
@@ -73,6 +74,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,0,0">
+                        <Button Content="Refresh" Margin="0,0,10,0" Padding="10,5" Click="RefreshHistory_Click"/>
                         <Button Content="Browse &amp; Add..." Margin="0,0,10,0" Padding="10,5" Click="BrowseChecksum_Click"/>
                         <Button Content="Compare Selected" Padding="10,5" Click="CompareChecksum_Click"/>
                     </StackPanel>

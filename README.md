@@ -6,7 +6,7 @@
 
 ## ✨ Features
 
-- **🚀 Fast Scanning**: Rapidly index entire drives or specific directories with optimized multi-threaded scanning.
+- **🚀 Fast Scanning**: Rapidly index entire drives or specific directories with optimized non-blocking background scanning.
 - **🛡️ Data Integrity**: Buffered SHA256 checksum calculation ensures your files are intact without hogging system memory.
 - **🔍 Smart Comparison**: Compare scan results to detect modified, missing, or corrupted files.
 - **📊 Real-Time Monitoring**: Live tracking of scan progress, memory usage (RAM), and file processing status.

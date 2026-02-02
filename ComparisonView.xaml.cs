@@ -137,6 +137,11 @@ namespace FileLister
             }
         }
 
+        private void RefreshHistory_Click(object sender, RoutedEventArgs e)
+        {
+            LoadHistory();
+        }
+
         private void HistorySetBase_Click(object sender, RoutedEventArgs e)
         {
              SetFileFromHistoryContextMenu(sender, isBase: true);
