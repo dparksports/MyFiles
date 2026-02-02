@@ -4,6 +4,10 @@ A powerful C# WPF application for auditing, scanning, and comparing file systems
 
 ![File Lister Screenshot](screenshot.png)
 
+## Download
+
+[Download v1.0.1](https://github.com/dparksports/FileListerUtility/releases/download/v1.0.1/FileLister_v1.0.1.zip)
+
 ## Features
 
 - **Multi-Drive Scanning**: Recursively scan local fixed drives and network locations.
