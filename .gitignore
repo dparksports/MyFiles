@@ -53,3 +53,10 @@ $RECYCLE.BIN/
 
 # Output files
 *.csv
+*_scan_results*.csv
+*.zip
+*.sha256
+scan_history.json
+history.txt
+last_active_scan.txt
+*.csv

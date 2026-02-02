@@ -1,42 +1,85 @@
 <Window x:Class="FileLister.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="File Lister Utility" Height="450" Width="600">
+        xmlns:local="clr-namespace:FileLister"
+        Title="File Lister Utility" Height="650" Width="900"
+        Closing="Window_Closing">
     <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Scan &amp; Create">
+                <Grid Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-        <TextBlock Text="Select Drives to Scan:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+                    <TextBlock Text="Select Drives to Scan:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
-        <ListView x:Name="DrivesList" Grid.Row="1" Margin="0,0,0,10">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"/>
+                    <ListView x:Name="DrivesList" Grid.Row="1" Margin="0,0,0,10">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,0,10">
+                        <!-- Moved Comparison button (removed) -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="ScanButton" Content="Scan Selected Drives" Padding="10,5" Click="ScanButton_Click" Margin="0,0,10,0"/>
+                            <Button x:Name="ChecksumControlButton" Content="Pause Calculation" Padding="10,5" Click="ChecksumControlButton_Click" Margin="0,0,10,0" IsEnabled="False"/>
+                        </StackPanel>
                     </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
 
-        <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right" Margin="0,0,0,10">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
-                 <Button Content="Compare Comparison Tool" Click="OpenComparison_Click" Padding="10,5"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="ScanButton" Content="Scan Selected Drives" Padding="10,5" Click="ScanButton_Click" Margin="0,0,10,0"/>
-                <Button x:Name="ChecksumButton" Content="Calculate SHA256" Padding="10,5" Click="ChecksumButton_Click" Margin="0,0,10,0" IsEnabled="False"/>
-                <Button x:Name="SaveButton" Content="Save Scan List" Padding="10,5" Click="SaveButton_Click" IsEnabled="False"/>
-            </StackPanel>
-        </StackPanel>
+                    <StackPanel Grid.Row="3">
+                        <ProgressBar x:Name="ScanProgressBar" Height="20" Margin="0,0,0,5"/>
+                        <DockPanel>
+                            <TextBlock x:Name="StatusText" Text="Ready"/>
+                            <TextBlock x:Name="RamUsageText" Text="RAM: 0 MB" HorizontalAlignment="Right" Foreground="Gray"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <TabItem Header="Compare Scans">
+                <!-- Simple Mode View -->
+                <local:ComparisonView x:Name="SimpleView" Margin="5"/>
+            </TabItem>
 
-        <StackPanel Grid.Row="3">
-            <ProgressBar x:Name="ScanProgressBar" Height="20" Margin="0,0,0,5"/>
-            <TextBlock x:Name="StatusText" Text="Ready"/>
-        </StackPanel>
+            <TabItem Header="Compare Checksums">
+                <!-- Checksum Mode View -->
+                <local:ComparisonView x:Name="ChecksumView" Margin="5"/>
+            </TabItem>
+
+            <TabItem Header="Settings">
+                <Grid Margin="10">
+                    <StackPanel>
+                        <GroupBox Header="Performance Settings" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <StackPanel Margin="0,0,0,10">
+                                    <TextBlock Text="Scan Progress Refresh Rate (Files):" Margin="0,0,0,5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox x:Name="RefreshRateInput" Width="100" Text="10000" TextChanged="RefreshRateInput_TextChanged" Margin="0,0,10,0"/>
+                                        <TextBlock Text="(Update UI every N files found)" VerticalAlignment="Center" Foreground="Gray"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel>
+                                    <TextBlock Text="Checksum Progress Refresh Rate (Files):" Margin="0,0,0,5"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox x:Name="ChecksumRateInput" Width="100" Text="100" TextChanged="ChecksumRateInput_TextChanged" Margin="0,0,10,0"/>
+                                        <TextBlock Text="(Update UI every N files hashed)" VerticalAlignment="Center" Foreground="Gray"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
