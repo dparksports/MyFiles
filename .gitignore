@@ -50,3 +50,6 @@ $RECYCLE.BIN/
 
 # VS Code directories
 .history/
+
+# Output files
+*.csv
