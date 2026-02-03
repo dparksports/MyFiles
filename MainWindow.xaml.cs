@@ -55,6 +55,41 @@ namespace FileLister
             ChecksumView.SetMode("Checksum");
             
             LoadSettings();
+            LoadStartupStatus();
+        }
+        
+        private void LoadStartupStatus()
+        {
+            // Detach event to prevent triggering during load if needed, 
+            // but here we can just set it and rely on explicit user action logic or a flag?
+            // Simpler: Just set it. The Checked event will fire.
+            // But we don't want to re-register if already registered on load.
+            // Let's suppress logic if it matches.
+            
+            bool isRegistered = StartupManager.IsRegistered();
+            if (StartupCheckbox.IsChecked != isRegistered)
+            {
+                // Temporarily remove handler to avoid cycle? 
+                // XAML wiring makes it hard to remove by name easily without "this."
+                // Check IsLoaded or similar?
+                
+                // Let's just set a flag or do a simple check in the handler.
+                StartupCheckbox.IsChecked = isRegistered;
+            }
+        }
+
+        private void StartupCheckbox_Changed(object sender, RoutedEventArgs e)
+        {
+            if (!IsLoaded) return; // Prevent firing during initialization
+
+            if (StartupCheckbox.IsChecked == true)
+            {
+                StartupManager.Register();
+            }
+            else
+            {
+                StartupManager.Unregister();
+            }
         }
 
         private void LoadSettings()

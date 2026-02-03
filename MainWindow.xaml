@@ -112,6 +112,15 @@
             <TabItem Header="Settings">
                 <Grid Margin="10">
                     <StackPanel>
+                        <GroupBox Header="General Settings" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <CheckBox x:Name="StartupCheckbox" 
+                                          Content="Start automatically on login" 
+                                          Checked="StartupCheckbox_Changed"
+                                          Unchecked="StartupCheckbox_Changed"/>
+                            </StackPanel>
+                        </GroupBox>
+
                         <GroupBox Header="Performance Settings" Margin="0,0,0,10">
                             <StackPanel Margin="10">
                                 <StackPanel Margin="0,0,0,10">
