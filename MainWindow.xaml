@@ -130,6 +130,21 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+
+                        <GroupBox Header="Privacy Settings">
+                            <StackPanel Margin="10">
+                                <CheckBox x:Name="AnalyticsCheckbox" 
+                                          Content="Share anonymous usage data" 
+                                          IsChecked="{Binding IsAnalyticsEnabled}"
+                                          Checked="AnalyticsCheckbox_Changed"
+                                          Unchecked="AnalyticsCheckbox_Changed"/>
+                                <TextBlock Text="Help us improve by sending anonymous usage statistics. No personal data is collected." 
+                                           TextWrapping="Wrap" Foreground="Gray" FontSize="11" Margin="20,5,0,0"/>
+                                
+                                <TextBlock Text="Installation ID:" Margin="0,15,0,0" Foreground="Gray"/>
+                                <TextBox x:Name="InstallIdText" IsReadOnly="True" Background="Transparent" BorderThickness="0" Foreground="Gray"/>
+                            </StackPanel>
+                        </GroupBox>
                     </StackPanel>
                 </Grid>
             </TabItem>

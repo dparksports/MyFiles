@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
 
@@ -54,6 +53,23 @@ namespace FileLister
             // Initialize Views
             SimpleView.SetMode("Simple");
             ChecksumView.SetMode("Checksum");
+            
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            AnalyticsCheckbox.IsChecked = SettingsManager.Settings.IsAnalyticsEnabled;
+            InstallIdText.Text = SettingsManager.Settings.InstallationId;
+        }
+
+        private void AnalyticsCheckbox_Changed(object sender, RoutedEventArgs e)
+        {
+            if (AnalyticsCheckbox != null && AnalyticsCheckbox.IsChecked.HasValue)
+            {
+                SettingsManager.Settings.IsAnalyticsEnabled = AnalyticsCheckbox.IsChecked.Value;
+                SettingsManager.Save();
+            }
         }
 
         private void CheckForResumableScan()
