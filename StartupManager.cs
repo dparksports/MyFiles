@@ -22,6 +22,7 @@ namespace FileLister
 
                 using (var process = Process.Start(psi))
                 {
+                    if (process == null) return false;
                     process.WaitForExit();
                     return process.ExitCode == 0;
                 }
@@ -36,7 +37,7 @@ namespace FileLister
         {
             try
             {
-                string exePath = Process.GetCurrentProcess().MainModule?.FileName;
+                string? exePath = Process.GetCurrentProcess().MainModule?.FileName;
                 if (string.IsNullOrEmpty(exePath)) return;
 
                 // /SC ONLOGON triggers at user login
