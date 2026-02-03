@@ -16,7 +16,7 @@
 ## 📦 Installation
 
 1.  Go to the [Releases](https://github.com/dparksports/MyFiles/releases) page.
-2.  Download the latest [MyFiles_v1.5.0.zip](https://github.com/dparksports/MyFiles/releases/download/v1.5.0/MyFiles_v1.5.0.zip).
+2.  Download the latest [MyFiles_v1.5.1.zip](https://github.com/dparksports/MyFiles/releases/download/v1.5.1/MyFiles_v1.5.1.zip).
 3.  Extract the archive to a folder of your choice.
 4.  Run `MyFiles.exe`.
 
